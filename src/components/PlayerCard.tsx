@@ -1,5 +1,5 @@
 import type { Player } from '../types';
-import { getMentalLabel } from '../storage';
+import { getMentalLabel, getPlayerGrade } from '../storage';
 import StatBar from './StatBar';
 
 interface Props {
@@ -9,15 +9,20 @@ interface Props {
 
 export default function PlayerCard({ player, onClick }: Props) {
   const { label: mentalLabel, color: mentalColor } = getMentalLabel(player.stats.mental);
+  const { grade, color: gradeColor } = getPlayerGrade(player);
 
   return (
     <div className="player-card" onClick={onClick}>
       <div className="card-header">
-        <div>
-          <h3 className="card-name">{player.name}</h3>
-          <span className="card-riot-id">{player.riotId}</span>
+        <div className="card-header-left">
+          {player.avatar && <img src={player.avatar} alt={player.name} className="card-avatar" onError={e => (e.currentTarget.style.display = 'none')} />}
+          <div>
+            <h3 className="card-name">{player.name}</h3>
+            <span className="card-riot-id">{player.riotId}</span>
+          </div>
         </div>
         <div className="card-role-agent">
+          <span className="player-grade" style={{ color: gradeColor, borderColor: gradeColor }}>{grade}</span>
           <span className="card-role">{player.role}</span>
           <span className="card-agent">{player.mainAgent}</span>
         </div>

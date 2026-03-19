@@ -14,6 +14,7 @@ export interface Player {
   id: string;
   name: string;
   riotId: string;
+  avatar?: string;
   role: string;
   secondaryRole?: string;
   mainAgent: string;

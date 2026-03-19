@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import type { Player, ReviewEntry } from '../types';
-import { getMentalLabel } from '../storage';
+import { getMentalLabel, getPlayerGrade } from '../storage';
 import StatBar from './StatBar';
 import MentalBadge from './MentalBadge';
 
@@ -23,6 +23,7 @@ export default function PlayerDetail({ player, onEdit, onDelete, onBack, onSave 
   });
 
   const { color: mentalColor } = getMentalLabel(player.stats.mental);
+  const { grade, score: gradeScore, color: gradeColor } = getPlayerGrade(player);
 
   const handleAddReview = (e: React.FormEvent) => {
     e.preventDefault();
@@ -61,6 +62,7 @@ export default function PlayerDetail({ player, onEdit, onDelete, onBack, onSave 
 
       <div className="detail-header">
         <div className="detail-identity">
+          {player.avatar && <img src={player.avatar} alt={player.name} className="detail-avatar" onError={e => (e.currentTarget.style.display = 'none')} />}
           <h1 className="detail-name">{player.name}</h1>
           <span className="detail-riot-id">{player.riotId}</span>
           <div className="detail-tags">
@@ -71,10 +73,17 @@ export default function PlayerDetail({ player, onEdit, onDelete, onBack, onSave 
             {player.region && <span className="tag">{player.region}</span>}
           </div>
         </div>
-        <div className="detail-leadership-badge">
-          <span className="leadership-big-label">Leadership</span>
-          <span className="leadership-big">{player.leadership}</span>
-          <span className="leadership-formula">Game Sense × 0.5 + Comm × 0.5</span>
+        <div className="detail-badges">
+          <div className="detail-grade-badge" style={{ borderColor: gradeColor }}>
+            <span className="grade-big-label">Value</span>
+            <span className="grade-big" style={{ color: gradeColor }}>{grade}</span>
+            <span className="grade-score">{gradeScore}/100</span>
+          </div>
+          <div className="detail-leadership-badge">
+            <span className="leadership-big-label">Leadership</span>
+            <span className="leadership-big">{player.leadership}</span>
+            <span className="leadership-formula">Game Sense × 0.5 + Comm × 0.5</span>
+          </div>
         </div>
       </div>
 

@@ -126,6 +126,32 @@ export default function PlayerForm({ player, onSave, onCancel }: Props) {
               <label>Region</label>
               <input value={form.region ?? ''} onChange={e => setField('region', e.target.value)} placeholder="EU, NA, etc." />
             </div>
+            <div className="form-group full">
+              <label>Avatar</label>
+              <div className="avatar-upload-row">
+                {form.avatar && (
+                  <img src={form.avatar} alt="avatar preview" className="avatar-preview" />
+                )}
+                <label className="avatar-upload-btn">
+                  {form.avatar ? 'Change image' : 'Upload image'}
+                  <input
+                    type="file"
+                    accept="image/*"
+                    style={{ display: 'none' }}
+                    onChange={e => {
+                      const file = e.target.files?.[0];
+                      if (!file) return;
+                      const reader = new FileReader();
+                      reader.onload = () => setField('avatar', reader.result as string);
+                      reader.readAsDataURL(file);
+                    }}
+                  />
+                </label>
+                {form.avatar && (
+                  <button type="button" className="avatar-remove-btn" onClick={() => setField('avatar', '')}>Remove</button>
+                )}
+              </div>
+            </div>
           </div>
         </section>
 

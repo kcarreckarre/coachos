@@ -659,3 +659,59 @@ input[type="range"] {
 ::-webkit-scrollbar-track { background: var(--bg); }
 ::-webkit-scrollbar-thumb { background: var(--bg4); border-radius: 3px; }
 ::-webkit-scrollbar-thumb:hover { background: var(--border); }
+
+/* ===== AVATARS ===== */
+.card-header-left { display: flex; align-items: center; gap: 10px; }
+.card-avatar { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; border: 2px solid var(--border); flex-shrink: 0; }
+.detail-avatar { width: 72px; height: 72px; border-radius: 50%; object-fit: cover; border: 2px solid var(--border); margin-bottom: 10px; }
+.avatar-preview { width: 64px; height: 64px; border-radius: 50%; object-fit: cover; border: 2px solid var(--border); margin-top: 8px; }
+
+/* ===== GRADE BADGE ===== */
+.player-grade {
+  font-size: 1.1rem;
+  font-weight: 900;
+  border: 2px solid;
+  border-radius: 6px;
+  padding: 1px 8px;
+  letter-spacing: 0.05em;
+  text-align: center;
+}
+
+.detail-badges { display: flex; gap: 14px; align-items: flex-start; }
+
+.detail-grade-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: var(--bg2);
+  border: 2px solid;
+  border-radius: var(--radius);
+  padding: 12px 20px;
+  min-width: 90px;
+}
+.grade-big-label { font-size: 0.7rem; font-weight: 700; color: var(--text2); text-transform: uppercase; letter-spacing: 0.08em; }
+.grade-big { font-size: 2.6rem; font-weight: 900; line-height: 1; }
+.grade-score { font-size: 0.75rem; color: var(--text2); margin-top: 2px; }
+
+/* ===== AVATAR UPLOAD ===== */
+.avatar-upload-row { display: flex; align-items: center; gap: 12px; margin-top: 8px; }
+.avatar-upload-btn {
+  cursor: pointer;
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 7px 14px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  transition: border-color 0.15s;
+}
+.avatar-upload-btn:hover { border-color: var(--accent); }
+.avatar-remove-btn {
+  background: none;
+  border: 1px solid #ef4444;
+  color: #ef4444;
+  padding: 7px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.85rem;
+}
